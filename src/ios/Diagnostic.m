@@ -769,7 +769,7 @@ ABAddressBookRef _addressBook;
     NSString* status = [self getLocationAuthorizationStatusAsString:authStatus];
     NSLog([NSString stringWithFormat:@"Location authorization status changed to: %@", status]);
 
-    if(self.locationRequestCallbackId != nil){
+    if(self.locationRequestCallbackId != nil && authStatus != kCLAuthorizationStatusNotDetermined){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:status];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.locationRequestCallbackId];
         self.locationRequestCallbackId = nil;
